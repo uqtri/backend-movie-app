@@ -10,6 +10,7 @@ const authen = async ({ username, password }) => {
   }
 };
 const registerUser = async ({ username, password }) => {
+  console.log(username, password, "repository");
   try {
     const user = await userModel.findOne({ username });
     if (user) {

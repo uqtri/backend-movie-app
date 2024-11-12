@@ -16,9 +16,10 @@ const getUsers = async (req, res) => {
   }
 };
 
-
 const registerUser = async (req, res) => {
   const { username, password } = req.body;
+  console.log(username, password, "controller");
+
   try {
     const newUser = await userRepository.registerUser({ username, password });
     if (newUser) {
