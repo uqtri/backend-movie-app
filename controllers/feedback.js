@@ -2,7 +2,7 @@ import { feedbackRepository } from "../repositories/index.js";
 
 const getAllFeedbacks = async (req, res) => {
   try {
-    const feedbackList = await feedbackRepository.getAllFeedback();
+    const feedbackList = await feedbackRepository.getAllFeedbacks();
 
     res.status(200).json({
       data: feedbackList,
