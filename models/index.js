@@ -1,3 +1,3 @@
 import userModel from "./user.js";
-
-export { userModel };
+import feedbackModel from "./feedback.js";
+export { userModel, feedbackModel };
