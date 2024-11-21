@@ -16,6 +16,29 @@ const getUsers = async (req, res) => {
   }
 };
 
+const getUserByUsername = async (req, res) => {
+  const { username } = req.params || req.cookies["username"];
+  console.log("TRI");
+  if (!username) {
+    res.status(400).json({
+      message: "Need an username",
+      statusCode: "400",
+    });
+  }
+  try {
+    const user = await userRepository.getUserByUsername({ username });
+    const returnedUser = { ...user._doc, password: "" };
+    res.status(200).json({
+      data: returnedUser,
+      statusCode: "200",
+    });
+  } catch (error) {
+    res.status(400).json({
+      statusCode: "400",
+      message: "Need an username",
+    });
+  }
+};
 const registerUser = async (req, res) => {
   console.log(req, "REQ");
   const { username, password } = req.body;
@@ -36,4 +59,5 @@ const registerUser = async (req, res) => {
 export default {
   registerUser,
   getUsers,
+  getUserByUsername,
 };

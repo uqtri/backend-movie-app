@@ -1,12 +1,11 @@
 import { userModel } from "../models/index.js";
-const authen = async ({ username, password }) => {
+
+const getUserByUsername = async ({ username }) => {
   try {
-    const user = await userModel.findOne({ username, password });
-    if (!user) {
-      throw new Error("Wrong username or password");
-    }
-  } catch (error) {
-    throw error;
+    const user = await userModel.findOne({ username });
+    return user;
+  } catch (erorr) {
+    throw erorr;
   }
 };
 const registerUser = async ({ username, password }) => {
@@ -38,4 +37,5 @@ const getUsers = async () => {
 export default {
   registerUser,
   getUsers,
+  getUserByUsername,
 };
