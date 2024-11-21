@@ -1,11 +1,12 @@
 import { movieRepository } from "../repositories/index.js";
 const postMovie = async (req, res) => {
   const { username } = req.params || req.cookies["username"];
-  const { movieName } = req.body;
+  const movie = req.body;
+  console.log(movie, "!@#!@");
   try {
     const purchasedMovies = await movieRepository.postMovie({
       username,
-      movieName,
+      movie,
     });
     res.status(200).json({
       statusCode: "200",
@@ -20,12 +21,11 @@ const postMovie = async (req, res) => {
 };
 const postMovieToShoppingCart = async (req, res) => {
   const { username } = req.params || req.cookies["username"];
-  const { movieName } = req.body;
-
+  const movie = req.body;
   try {
     const shoppingCart = await movieRepository.postMovieToShoppingCart({
       username,
-      movieName,
+      movie,
     });
     res.status(200).json({
       statusCode: "200",
@@ -40,12 +40,12 @@ const postMovieToShoppingCart = async (req, res) => {
 };
 const deleteMovieFromShoppingCart = async (req, res) => {
   const { username } = req.params || req.cookies["username"];
-  const { movieName } = req.body;
+  const movie = req.body;
 
   try {
     const shoppingCart = await movieRepository.deleteMovieFromShoppingCart({
       username,
-      movieName,
+      movie,
     });
     res.status(200).json({
       message: "200",

@@ -1,30 +1,31 @@
 import { userModel } from "../models/index.js";
 
-const postMovie = async ({ username, movieName }) => {
+const postMovie = async ({ username, movie }) => {
   try {
     const user = await userModel.findOne({ username });
-    user.purchasedMovies.push({ name: movieName });
+    user.purchasedMovies.push(movie);
     await user.save();
     return user.purchasedMovies;
   } catch (error) {
     throw error;
   }
 };
-const postMovieToShoppingCart = async ({ username, movieName }) => {
+const postMovieToShoppingCart = async ({ username, movie }) => {
   try {
     const user = await userModel.findOne({ username });
-    user.shoppingCart.push({ name: movieName });
+    user.shoppingCart.push(movie);
     await user.save();
     return user.shoppingCart;
   } catch (error) {
     throw error;
   }
 };
-const deleteMovieFromShoppingCart = async ({ username, movieName }) => {
+const deleteMovieFromShoppingCart = async ({ username, movie }) => {
   try {
     const user = await userModel.findOne({ username });
     user.shoppingCart = user.shoppingCart.filter(
-      (movie) => movie.name !== movieName
+      (currentMovie) =>
+        movie.name !== currentMovie.name && movie.id !== currentMovie.id
     );
     user.save();
     return user.shoppingCart;
