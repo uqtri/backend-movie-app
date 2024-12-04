@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import { database } from "./database/index.js";
+import { sendMail } from "./utils/mailer/mailer.js";
 import {
   userRouter,
   authenRouter,

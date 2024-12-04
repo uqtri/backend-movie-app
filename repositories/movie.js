@@ -24,8 +24,7 @@ const deleteMovieFromShoppingCart = async ({ username, movie }) => {
   try {
     const user = await userModel.findOne({ username });
     user.shoppingCart = user.shoppingCart.filter(
-      (currentMovie) =>
-        movie.name !== currentMovie.name && movie.id !== currentMovie.id
+      (currentMovie) => movie._id !== currentMovie._id
     );
     user.save();
     return user.shoppingCart;
