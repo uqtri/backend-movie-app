@@ -13,7 +13,6 @@ const transporter = nodemailer.createTransport(optionConfig);
 
 const sendMail = async (messageConfig) => {
   try {
-    console.log(messageConfig, "@#!@#");
     const response = await transporter.sendMail(messageConfig);
     return response;
   } catch (error) {

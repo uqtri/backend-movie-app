@@ -9,6 +9,7 @@ const movieSchema = mongoose.Schema({
 const userSchema = mongoose.Schema({
   username: String,
   password: String,
+  gmail: String,
   shoppingCart: [movieSchema],
   purchasedMovies: [movieSchema],
 });
