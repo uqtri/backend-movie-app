@@ -1,6 +1,6 @@
 import { httpStatusCode } from "../httpStatusCode/httpStatusCode.js";
 import { tokenRepository } from "../repositories/index.js";
-import { sendResetPasswordMail } from "../utils/mailer/htmlMail/ResetPasswordMail/send.js";
+import { sendResetPasswordMail } from "../utils/mailer/htmlMail/resetPasswordMail/send.js";
 const resetPassword = async (req, res) => {
   const { username } = req.params;
   const { newPassword } = req.body;
