@@ -5,7 +5,7 @@ dotenv.config();
 const URL = process.env.FRONTEND_URL;
 const formatHtmlText = ({ token }) => {
   const resetLink =
-    URL + `/reset-password?username=${token.username}?token=${token.token}`;
+    URL + `/reset-password?username=${token.username}&token=${token.token}`;
   const htmlText = `
     <p>Xin chào <strong>${token.username}</strong>,</p>
 
@@ -20,6 +20,8 @@ const formatHtmlText = ({ token }) => {
     <p>Nếu bạn không yêu cầu đặt lại mật khẩu, vui lòng bỏ qua email này. Mật khẩu của bạn sẽ không bị thay đổi.</p>
 
     <p>Để bảo mật tài khoản của bạn, hãy đảm bảo không chia sẻ liên kết này với bất kỳ ai.</p>
+
+    <p><strong>Lưu ý:</strong> Liên kết này sẽ hết hạn sau 3 phút kể từ khi bạn nhận được email này. Hãy đảm bảo hoàn tất việc đặt lại mật khẩu trong thời gian này.</p>
 
     <p>Trân trọng, <br>
     <strong>Đội ngũ hỗ trợ Movie Box</strong></p>

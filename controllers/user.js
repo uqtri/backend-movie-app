@@ -7,7 +7,7 @@ const resetPassword = async (req, res) => {
   try {
     const user = await userRepository.resetPassword({ token, username });
     res.status(httpStatusCode.OKE).json({
-      message: user,
+      message: "Change password succesfully",
       statusCode: httpStatusCode.OKE,
     });
   } catch (error) {

@@ -1,5 +1,5 @@
-import { userModel } from "../models/index.js";
-
+import { tokenModel, userModel } from "../models/index.js";
+import bcrypt from "bcrypt";
 const getEmailByUsername = async ({ username }) => {
   const user = await userModel.findOne({ username });
   return user.gmail;
@@ -61,10 +61,37 @@ const updateUser = async ({ username, gmail, phone, address }) => {
     throw error;
   }
 };
+const resetPassword = async ({ token, username, newPassword }) => {
+  try {
+    const dbToken = await tokenModel.findOne({ username });
+    const isEqual = await bcrypt.compare(token, dbToken.token);
+
+    const user = userModel.findOne({ username });
+    if (user === null || dbToken || !isEqual) {
+      throw new Error("user not exist or token is invalid");
+    }
+    if (isEqual) {
+      userModel.updateOne(
+        { username },
+        {
+          $set: {
+            password: newPassword,
+          },
+        }
+      );
+    }
+    return {
+      oke: true,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
 export default {
   registerUser,
   getUsers,
   getUserByUsername,
   updateUser,
   getEmailByUsername,
+  resetPassword,
 };
