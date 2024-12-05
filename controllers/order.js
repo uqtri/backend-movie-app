@@ -1,6 +1,6 @@
 import { orderRepository } from "../repositories/index.js";
 import { httpStatusCode } from "../httpStatusCode/httpStatusCode.js";
-import { sendThankYouMail } from "../utils/mailer/htmlMail/ThankMail/Send.js";
+import { sendThankYouMail } from "../utils/mailer/htmlMail/ThankMail/send.js";
 const postOrder = async (req, res) => {
   const { username } = req.params || req.cookies["username"];
   const order = req.body;
