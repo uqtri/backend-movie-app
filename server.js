@@ -7,6 +7,7 @@ import {
   feedbackRouter,
   movieRouter,
   orderRouter,
+  tokenRouter,
 } from "./routes/index.js";
 
 import cors from "cors";
@@ -19,6 +20,7 @@ app.use("/authen", authenRouter);
 app.use("/feedback", feedbackRouter);
 app.use("/movie", movieRouter);
 app.use("/order", orderRouter);
+app.use("/token", tokenRouter);
 app.listen(PORT, async () => {
   await database.connectToDB();
   console.log(`server is running on port ${PORT}`);

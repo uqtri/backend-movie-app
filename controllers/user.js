@@ -1,6 +1,22 @@
 import { httpStatusCode } from "../httpStatusCode/httpStatusCode.js";
 import { userRepository } from "../repositories/index.js";
 
+const resetPassword = async (req, res) => {
+  const { token, username } = req.query;
+
+  try {
+    const user = await userRepository.resetPassword({ token, username });
+    res.status(httpStatusCode.OKE).json({
+      message: user,
+      statusCode: httpStatusCode.OKE,
+    });
+  } catch (error) {
+    res.status(httpStatusCode.BAD_REQUEST).json({
+      message: error.toString(),
+      statusCode: httpStatusCode.BAD_REQUEST,
+    });
+  }
+};
 const getUsers = async (req, res) => {
   try {
     let userList = await userRepository.getUsers();

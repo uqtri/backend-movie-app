@@ -3,5 +3,12 @@ import authenRouter from "./authen.js";
 import feedbackRouter from "./feedback.js";
 import movieRouter from "./movie.js";
 import orderRouter from "./order.js";
-
-export { userRouter, authenRouter, feedbackRouter, movieRouter, orderRouter };
+import tokenRouter from "./token.js";
+export {
+  userRouter,
+  authenRouter,
+  feedbackRouter,
+  movieRouter,
+  orderRouter,
+  tokenRouter,
+};

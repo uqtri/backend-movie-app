@@ -6,4 +6,5 @@ router.get("/", userController.getUsers);
 router.post("/", userController.registerUser);
 router.get("/:username", userController.getUserByUsername);
 router.put("/:username", userController.updateUser);
+// router.put("/reset", userController.resetPassword);
 export default router;
