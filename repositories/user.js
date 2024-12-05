@@ -1,8 +1,15 @@
 import { userModel } from "../models/index.js";
 
+const getEmailByUsername = async ({ username }) => {
+  const user = await userModel.findOne({ username });
+  return user.gmail;
+};
 const getUserByUsername = async ({ username }) => {
   try {
     const user = await userModel.findOne({ username });
+    if (user === null) {
+      throw new Error("User not existed");
+    }
     return user;
   } catch (erorr) {
     throw erorr;
@@ -34,8 +41,30 @@ const getUsers = async () => {
     throw error;
   }
 };
+const updateUser = async ({ username, gmail, phone, address }) => {
+  try {
+    let user = await userModel.updateOne(
+      { username },
+      {
+        $set: {
+          username,
+          gmail,
+          address,
+        },
+      }
+    );
+    if (user === null) {
+      throw new Error("User not existed");
+    }
+    return user;
+  } catch (error) {
+    throw error;
+  }
+};
 export default {
   registerUser,
   getUsers,
   getUserByUsername,
+  updateUser,
+  getEmailByUsername,
 };

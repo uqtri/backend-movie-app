@@ -1,5 +1,6 @@
 import { orderRepository } from "../repositories/index.js";
 import { httpStatusCode } from "../httpStatusCode/httpStatusCode.js";
+import { sendThankYouMail } from "../utils/mailer/htmlMail/ThankMail/Send.js";
 const postOrder = async (req, res) => {
   const { username } = req.params || req.cookies["username"];
   const order = req.body;
@@ -7,6 +8,8 @@ const postOrder = async (req, res) => {
 
   try {
     const newOrder = await orderRepository.postOrder({ order });
+    const info = await sendThankYouMail({ order });
+
     res.status(httpStatusCode.OKE).json({
       stausCode: httpStatusCode.OKE,
       data: newOrder,

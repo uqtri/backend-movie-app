@@ -36,7 +36,7 @@ const postMovie = async (req, res) => {
       <strong>Movie Box Team</strong></p>`;
     const messageConfig = {
       from: "Movie Box <moviebox123321@gmail.com>",
-      to: "ungquangtri1@gmail.com",
+      to: "{ungquangtri1@gmail.com}",
       subject: "NOTICE ABOUT PURCHASING",
       html: htmlText,
     };

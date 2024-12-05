@@ -1,3 +1,4 @@
+import { httpStatusCode } from "../httpStatusCode/httpStatusCode.js";
 import { userRepository } from "../repositories/index.js";
 
 const getUsers = async (req, res) => {
@@ -16,13 +17,34 @@ const getUsers = async (req, res) => {
   }
 };
 
+const updateUser = async (req, res) => {
+  const { gmail, phone, address } = req.body;
+  const { username } = req.params || req.cookies["username"];
+
+  try {
+    const updatedUser = await userRepository.updateUser({
+      username,
+      gmail,
+      phone,
+      address,
+    });
+    res.status(httpStatusCode.OKE).json({
+      data: updatedUser,
+      statusCode: httpStatusCode.OKE,
+    });
+  } catch (error) {
+    res.status(httpStatusCode.BAD_REQUEST).json({
+      stausCode: httpStatusCode.BAD_REQUEST,
+      message: error.toString(),
+    });
+  }
+};
 const getUserByUsername = async (req, res) => {
   const { username } = req.params || req.cookies["username"];
-  console.log("TRI");
-  if (!username) {
-    res.status(400).json({
+  if (username === undefined) {
+    return res.status(400).json({
       message: "Need an username",
-      statusCode: "400",
+      statusCode: httpStatusCode.BAD_REQUEST,
     });
   }
   try {
@@ -30,19 +52,17 @@ const getUserByUsername = async (req, res) => {
     const returnedUser = { ...user._doc, password: "" };
     res.status(200).json({
       data: returnedUser,
-      statusCode: "200",
+      statusCode: httpStatusCode.OKE,
     });
   } catch (error) {
     res.status(400).json({
-      statusCode: "400",
+      statusCode: httpStatusCode.BAD_REQUEST,
       message: "Need an username",
     });
   }
 };
 const registerUser = async (req, res) => {
-  console.log(req, "REQ");
   const { username, password } = req.body;
-  console.log(username, password, "controller");
   try {
     const newUser = await userRepository.registerUser({ username, password });
     if (newUser) {
@@ -60,4 +80,5 @@ export default {
   registerUser,
   getUsers,
   getUserByUsername,
+  updateUser,
 };

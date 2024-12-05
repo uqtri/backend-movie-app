@@ -1,15 +1,12 @@
 import mongoose from "mongoose";
-
-const movieSchema = mongoose.Schema({
-  name: String,
-  id: String,
-  price: String,
-});
+import { movieSchema } from "../schema/movieSchema.js";
 
 const userSchema = mongoose.Schema({
   username: String,
   password: String,
   gmail: String,
+  phone: String,
+  address: String,
   shoppingCart: [movieSchema],
   purchasedMovies: [movieSchema],
 });
