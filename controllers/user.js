@@ -1,10 +1,19 @@
+import { query } from "express";
 import { httpStatusCode } from "../httpStatusCode/httpStatusCode.js";
 import { userRepository } from "../repositories/index.js";
 
 const resetPassword = async (req, res) => {
   const { token, username } = req.query;
+  const { newPassword } = req.body;
+  console.log(req.body);
+
+  console.log(token, username);
   try {
-    const user = await userRepository.resetPassword({ token, username });
+    const user = await userRepository.resetPassword({
+      token,
+      username,
+      newPassword,
+    });
     res.status(httpStatusCode.OKE).json({
       message: "Change password succesfully",
       statusCode: httpStatusCode.OKE,

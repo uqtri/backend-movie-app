@@ -11,19 +11,21 @@ const signToken = async ({ username }) => {
       Number(process.env.SALT_OR_ROUNDS)
     );
     const token = await tokenModel.findOneAndUpdate(
-      { username }, // Query: Look for an existing document with the given username
+      { username },
       {
         $set: {
           token: hashedtoken,
-          username, // Optional, if you need to ensure the username is updated
+          username,
         },
       },
       {
         new: true, // Return the updated document
-        upsert: true, // Create the document if it doesn't exist
+        upsert: true,
       }
     );
-    return token;
+    console.log("CHECK!@#", await bcrypt.compare(randomToken, hashedtoken));
+    console.log(randomToken, " ", hashedtoken, "HERE");
+    return { token: randomToken, username };
   } catch (erorr) {
     throw erorr;
   }
