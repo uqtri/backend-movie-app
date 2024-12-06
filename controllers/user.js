@@ -3,7 +3,6 @@ import { userRepository } from "../repositories/index.js";
 
 const resetPassword = async (req, res) => {
   const { token, username } = req.query;
-
   try {
     const user = await userRepository.resetPassword({ token, username });
     res.status(httpStatusCode.OKE).json({
@@ -97,4 +96,5 @@ export default {
   getUsers,
   getUserByUsername,
   updateUser,
+  resetPassword,
 };

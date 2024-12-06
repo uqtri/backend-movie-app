@@ -5,7 +5,6 @@ dotenv.config();
 
 const URL = process.env.FRONTEND_URL;
 const formatHtmlText = ({ products }) => {
-  console.log(products, "!@#!@");
   const productList = products
     .map((movie) => {
       return `
@@ -51,10 +50,9 @@ const ThankMailConfig = async ({ order }) => {
   const messageConfig = {
     from: mailFrom,
     to: userGmail,
-    subject: "PLACE ORDER FROM MOVIE BOX",
+    subject: "ĐẶT HÀNG TỪ MOVIE BOX",
     html: `${formatHtmlText({ products: order.products })}`,
   };
-  console.log(messageConfig, "!@#!@");
   return messageConfig;
 };
 

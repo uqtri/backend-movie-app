@@ -47,7 +47,7 @@ const updateUser = async ({ username, gmail, phone, address }) => {
       { username },
       {
         $set: {
-          username,
+          phone,
           gmail,
           address,
         },

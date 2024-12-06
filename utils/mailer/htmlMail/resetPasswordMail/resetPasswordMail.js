@@ -38,7 +38,7 @@ const resetPasswordMailConfig = async ({ token }) => {
   const messageConfig = {
     from: mailFrom,
     to: userGmail,
-    subject: "RESET PASSWORD FROM MOVIE BOX",
+    subject: "ĐẶT LẠI MẬT KHẨU TỪ MOVIE BOX",
     html: `${formatHtmlText({ token })}`,
   };
   return messageConfig;
