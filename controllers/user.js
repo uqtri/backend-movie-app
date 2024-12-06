@@ -101,10 +101,22 @@ const registerUser = async (req, res) => {
     });
   }
 };
+const deleteUser = async (req, res) => {
+  const { message } = req.body;
+  const { username } = req.params;
+  try {
+    const status = await userRepository.deleteUser({ username, message });
+    res.status(httpStatusCode.OKE).json({
+      stausCode: httpStatusCode.OKE,
+      message: "Banned user succesfully",
+    });
+  } catch (error) {}
+};
 export default {
   registerUser,
   getUsers,
   getUserByUsername,
   updateUser,
   resetPassword,
+  deleteUser,
 };

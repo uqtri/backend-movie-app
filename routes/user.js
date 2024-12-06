@@ -7,4 +7,6 @@ router.post("/", userController.registerUser);
 router.get("/:username", userController.getUserByUsername);
 router.put("/reset-password", userController.resetPassword);
 router.put("/:username", userController.updateUser);
+router.delete("/:username", userController.deleteUser);
+
 export default router;

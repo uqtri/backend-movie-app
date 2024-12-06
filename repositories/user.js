@@ -95,6 +95,24 @@ const resetPassword = async ({ token, username, newPassword }) => {
     throw error;
   }
 };
+const deleteUser = async ({ username, message }) => {
+  try {
+    await userModel.updateOne(
+      { username },
+      {
+        $set: {
+          message,
+          isBanned: true,
+        },
+      }
+    );
+    return {
+      status: "OKE",
+    };
+  } catch (erorr) {
+    throw erorr;
+  }
+};
 export default {
   registerUser,
   getUsers,
@@ -102,4 +120,5 @@ export default {
   updateUser,
   getEmailByUsername,
   resetPassword,
+  deleteUser,
 };

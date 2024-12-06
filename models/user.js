@@ -8,6 +8,14 @@ const userSchema = mongoose.Schema({
   phone: String,
   address: String,
   name: String,
+  isBanned: {
+    type: Boolean,
+    default: false,
+  },
+  message: {
+    type: String,
+    default: "",
+  },
   shoppingCart: [movieSchema],
   purchasedMovies: [movieSchema],
 });
