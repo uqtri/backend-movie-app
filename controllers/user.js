@@ -42,7 +42,7 @@ const getUsers = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-  const { gmail, phone, address } = req.body;
+  const { gmail, phone, address, name } = req.body;
   const { username } = req.params || req.cookies["username"];
 
   try {
@@ -51,6 +51,7 @@ const updateUser = async (req, res) => {
       gmail,
       phone,
       address,
+      name,
     });
     res.status(httpStatusCode.OKE).json({
       data: updatedUser,

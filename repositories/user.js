@@ -42,7 +42,7 @@ const getUsers = async () => {
     throw error;
   }
 };
-const updateUser = async ({ username, gmail, phone, address }) => {
+const updateUser = async ({ username, gmail, phone, address, name }) => {
   try {
     let user = await userModel.updateOne(
       { username },
@@ -51,6 +51,7 @@ const updateUser = async ({ username, gmail, phone, address }) => {
           phone,
           gmail,
           address,
+          name,
         },
       }
     );
@@ -63,7 +64,6 @@ const updateUser = async ({ username, gmail, phone, address }) => {
   }
 };
 const resetPassword = async ({ token, username, newPassword }) => {
-  console.log(token, username, newPassword, "!!CHECKVARRR");
   try {
     const dbToken = await tokenModel.findOne({ username });
     const user = await userModel.findOne({ username });

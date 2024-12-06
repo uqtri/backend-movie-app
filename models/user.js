@@ -7,6 +7,7 @@ const userSchema = mongoose.Schema({
   gmail: String,
   phone: String,
   address: String,
+  name: String,
   shoppingCart: [movieSchema],
   purchasedMovies: [movieSchema],
 });
