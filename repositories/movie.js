@@ -23,10 +23,10 @@ const postMovieToShoppingCart = async ({ username, movie }) => {
 const deleteMovieFromShoppingCart = async ({ username, movie }) => {
   try {
     const user = await userModel.findOne({ username });
-    user.shoppingCart = user.shoppingCart.filter(
-      (currentMovie) => movie._id !== currentMovie._id
-    );
-    user.save();
+    user.shoppingCart = user.shoppingCart.filter((currentMovie) => {
+      return movie._id != currentMovie._id;
+    });
+    await user.save();
     return user.shoppingCart;
   } catch (error) {
     throw error;
