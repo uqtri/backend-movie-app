@@ -16,7 +16,7 @@ const getUserByUsername = async ({ username }) => {
     throw erorr;
   }
 };
-const registerUser = async ({ username, password }) => {
+const registerUser = async ({ username, password, gmail, name }) => {
   console.log(username, password, "repository");
   try {
     const user = await userModel.findOne({ username });
