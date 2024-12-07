@@ -5,7 +5,8 @@ dotenv.config();
 const URL = process.env.FRONTEND_URL;
 const formatHtmlText = ({ token }) => {
   const resetLink =
-    URL + `/reset-password?username=${token.username}&token=${token.token}`;
+    URL +
+    `/reset-password/change-password?username=${token.username}&token=${token.token}`;
   const htmlText = `
     <p>Xin chào <strong>${token.username}</strong>,</p>
 
