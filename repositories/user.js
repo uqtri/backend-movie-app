@@ -26,6 +26,8 @@ const registerUser = async ({ username, password }) => {
     const userObject = {
       username,
       password,
+      name,
+      gmail,
     };
     const newUser = await userModel.create(userObject);
     return newUser;

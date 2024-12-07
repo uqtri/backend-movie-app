@@ -72,6 +72,7 @@ const getUserByUsername = async (req, res) => {
       statusCode: httpStatusCode.BAD_REQUEST,
     });
   }
+  console.log("CATCH");
   try {
     const user = await userRepository.getUserByUsername({ username });
     const returnedUser = { ...user._doc, password: "" };
@@ -87,9 +88,14 @@ const getUserByUsername = async (req, res) => {
   }
 };
 const registerUser = async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, gmail, name } = req.body;
   try {
-    const newUser = await userRepository.registerUser({ username, password });
+    const newUser = await userRepository.registerUser({
+      username,
+      password,
+      name,
+      gmail,
+    });
     if (newUser) {
       return res.status(200).json({
         message: "Register succesfully",
