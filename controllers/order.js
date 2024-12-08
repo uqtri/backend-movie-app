@@ -21,6 +21,20 @@ const postOrder = async (req, res) => {
     });
   }
 };
+const getAllOrder = async (req, res) => {
+  try {
+    const allOrder = await orderRepository.getAllOrder();
+    res.status(httpStatusCode.OKE).json({
+      data: allOrder,
+      stausCode: httpStatusCode.OKE,
+    });
+  } catch (error) {
+    res.status(httpStatusCode.BAD_REQUEST).json({
+      message: error.toString(),
+      stausCode: httpStatusCode.BAD_REQUEST,
+    });
+  }
+};
 const getOrderByUsername = async (req, res) => {
   const { username } = req.params || req.cookies["username"];
 
@@ -36,4 +50,4 @@ const getOrderByUsername = async (req, res) => {
     });
   }
 };
-export default { postOrder, getOrderByUsername };
+export default { postOrder, getOrderByUsername, getAllOrder };

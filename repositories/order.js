@@ -16,4 +16,12 @@ const getOrderByUsername = async ({ username }) => {
     throw erorr;
   }
 };
-export default { postOrder, getOrderByUsername };
+const getAllOrder = async () => {
+  try {
+    const allOrder = await orderModel.find({});
+    return allOrder;
+  } catch (erorr) {
+    throw erorr;
+  }
+};
+export default { postOrder, getOrderByUsername, getAllOrder };
